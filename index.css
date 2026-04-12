@@ -1,5 +1,4 @@
 /* ================== VARIÁVEIS GERAIS ================== */
-/* A raiz do documento: Salva cores em variáveis para facilitar a mudança depois */
 :root {
     --bg-dark: #050505;          /* Fundo quase preto do site */
     --card-bg: #111111;          /* Fundo um pouco mais claro para os cartões */
@@ -11,95 +10,92 @@
     --whatsapp-green: #25d366;   /* Cor oficial do WhatsApp */
 }
 
-/* O seletor '*' reseta os padrões do navegador para todos os elementos */
 * {
-    margin: 0;                   /* Tira margens externas padrão */
-    padding: 0;                  /* Tira margens internas padrão */
-    box-sizing: border-box;      /* Impede que bordas aumentem o tamanho total do elemento */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Configuração do fundo da página inteira */
 body {
-    font-family: 'Montserrat', sans-serif; /* Aplica a fonte elegante */
-    background: radial-gradient(circle at top center, #1a1a1a 0%, var(--bg-dark) 100%); /* Fundo com luz central */
-    color: var(--text-light);    /* Define a cor de todo o texto */
-    scroll-behavior: smooth;     /* Faz a página rolar suavemente ao clicar no menu */
-    overflow-x: hidden;          /* Impede barra de rolagem horizontal (evita quebrar o layout) */
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle at top center, #1a1a1a 0%, var(--bg-dark) 100%);
+    color: var(--text-light);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* ================== CABEÇALHO (MENU) ================== */
 header {
-    display: flex;               /* Alinha logo, menu e carrinho lado a lado */
-    justify-content: space-between; /* Joga os elementos para as bordas */
-    align-items: center;         /* Centraliza verticalmente */
-    padding: 1.5rem 5%;          /* Dá respiro (espaçamento) interno */
-    background-color: rgba(5, 5, 5, 0.75); /* Fundo preto levemente transparente */
-    backdrop-filter: blur(12px); /* Cria o efeito de "vidro embaçado" */
-    position: sticky;            /* Faz o menu grudar no topo da tela ao rolar */
-    top: 0;                      /* Fixa exatamente no pixel zero do topo */
-    z-index: 100;                /* Garante que o menu fique por cima de todas as imagens */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil separando o menu do site */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: rgba(5, 5, 5, 0.75);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logo {
     font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: 3px;         /* Afasta as letras da palavra ELITE */
+    letter-spacing: 3px;
 }
 
 .logo span {
-    color: var(--gold);          /* Pinta a palavra JERSEYS de dourado */
-    text-shadow: 0 0 10px var(--gold-glow); /* Coloca um brilho na logo */
+    color: var(--gold);
+    text-shadow: 0 0 10px var(--gold-glow);
 }
 
 nav ul {
-    display: flex;               /* Coloca os links do menu lado a lado */
-    list-style: none;            /* Tira as "bolinhas" padrão de listas */
-    gap: 2.5rem;                 /* Espaço entre um link e outro */
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
 }
 
 nav a {
     color: var(--text-light);
-    text-decoration: none;       /* Tira o sublinhado dos links */
+    text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;
-    text-transform: uppercase;   /* Deixa tudo em CAIXA ALTA */
-    position: relative;          /* Necessário para a animação da linha amarela abaixo */
+    text-transform: uppercase;
+    position: relative;
     transition: color 0.3s;
 }
 
-/* Cria a linha que aparece embaixo do link ao passar o mouse */
 nav a::after {
     content: '';
     position: absolute;
-    width: 0;                    /* Começa com largura zero (invisível) */
+    width: 0;
     height: 2px;
     bottom: -5px;
     left: 0;
     background-color: var(--gold);
-    transition: width 0.3s ease; /* Anima a largura crescendo */
+    transition: width 0.3s ease;
 }
 
-nav a:hover { color: var(--gold); } /* Pinta o texto de dourado no hover */
-nav a:hover::after { width: 100%; } /* Faz a linha crescer até 100% no hover */
+nav a:hover { color: var(--gold); }
+nav a:hover::after { width: 100%; }
 
 /* ================== CARRINHO DE COMPRAS ================== */
 .cart-container {
     display: flex;
     align-items: center;
     gap: 12px;
-    cursor: pointer;             /* Mouse vira "mãozinha" */
+    cursor: pointer;
     padding: 10px 20px;
-    border-radius: 30px;         /* Arredonda as pontas parecendo um botão */
-    background: linear-gradient(145deg, #1a1a1a, #0d0d0d); /* Cor metálica escura */
+    border-radius: 30px;
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
     border: 1px solid rgba(212, 175, 55, 0.2);
     transition: all 0.3s ease;
 }
 
 .cart-container:hover {
-    border-color: var(--gold);   /* Acende a borda dourada */
-    box-shadow: 0 0 20px var(--gold-glow); /* Acende o brilho externo */
-    transform: translateY(-2px); /* Pula um pouquinho pra cima */
+    border-color: var(--gold);
+    box-shadow: 0 0 20px var(--gold-glow);
+    transform: translateY(-2px);
 }
 
 .cart-container span.checkout-text {
@@ -111,82 +107,75 @@ nav a:hover::after { width: 100%; } /* Faz a linha crescer até 100% no hover */
 
 .cart-icon { position: relative; font-size: 1.2rem; }
 
-/* Bolinha com o número de itens na sacola */
 .cart-count {
     position: absolute;
     top: -10px;
     right: -12px;
     background-color: var(--gold);
-    color: #000;                 /* Número preto pra dar contraste */
+    color: #000;
     font-size: 0.7rem;
     font-weight: 700;
     padding: 3px 7px;
-    border-radius: 50%;          /* Círculo perfeito */
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação de pulo elástico */
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* ================== BANNER (HERO) E BOLA ANIMADA ================== */
 .hero {
-    height: 85vh;                /* Ocupa 85% da altura da tela */
+    height: 85vh;
     background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(5,5,5,0.7) 50%, var(--bg-dark) 100%), 
-                url('https://images.unsplash.com/photo-1606214174341-38379f64a78c?q=80&w=1920&auto=format&fit=crop') center/cover fixed; /* Imagem fixa no fundo (Parallax) */
+                url('https://images.unsplash.com/photo-1606214174341-38379f64a78c?q=80&w=1920&auto=format&fit=crop') center/cover fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     position: relative;
-    overflow: hidden;            /* Esconde a bola quando ela sai da tela */
+    overflow: hidden;
 }
 
-/* Caixa que controla o movimento da bola da esquerda pra direita */
 .ball-container {
     position: absolute;
-    bottom: 20%;                 /* Altura no chão */
-    left: -200px;                /* Começa fora da tela na esquerda */
-    z-index: 1;                  /* Fica atrás dos textos do banner */
-    animation: moveAcross 12s linear infinite; /* Animação de cruzar a tela */
+    bottom: 20%;
+    left: -200px;
+    z-index: 1;
+    animation: moveAcross 12s linear infinite;
 }
 
-/* Caixa que controla o "quicar" da bola */
 .bounce-wrapper {
     animation: bounceBall 0.5s infinite alternate ease-in; 
 }
 
-/* A bola em si */
 .rolling-ball {
     width: 150px; 
     height: 150px;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg') center/cover no-repeat; /* Textura real */
+    background: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg') center/cover no-repeat;
     border-radius: 50%;
-    filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(0.8) drop-shadow(0 0 25px rgba(212, 175, 55, 0.7)); /* Deixa dourada e brilhante */
+    filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(0.8) drop-shadow(0 0 25px rgba(212, 175, 55, 0.7));
     opacity: 0.9;
-    animation: spinBall 12s linear infinite; /* Faz ela girar */
+    animation: spinBall 12s linear infinite;
 }
 
-/* Sombra da bola no chão */
 .ball-shadow {
     width: 100px;
     height: 15px;
     background: rgba(0, 0, 0, 0.9);
     border-radius: 50%;
     margin: 10px auto 0 auto;
-    filter: blur(5px);           /* Desfoca pra parecer sombra */
-    animation: shadowPulse 0.5s infinite alternate ease-in; /* Sombra aumenta e diminui */
+    filter: blur(5px);
+    animation: shadowPulse 0.5s infinite alternate ease-in;
 }
 
-/* Animações (Keyframes) da Física da Bola */
 @keyframes moveAcross { 0% { left: -250px; } 100% { left: 110vw; } }
 @keyframes spinBall { 0% { transform: rotate(0deg); } 100% { transform: rotate(1080deg); } }
 @keyframes bounceBall { 0% { transform: translateY(-40px); animation-timing-function: ease-in; } 100% { transform: translateY(0); animation-timing-function: ease-out; } }
 @keyframes shadowPulse { 0% { transform: scale(0.6); opacity: 0.3; } 100% { transform: scale(1); opacity: 0.8; } }
 
-/* Textos do Banner */
 .hero-content {
-    animation: fadeInUp 1s ease-out forwards; /* Texto sobe suavemente ao carregar o site */
+    animation: fadeInUp 1s ease-out forwards;
     opacity: 0;
     transform: translateY(30px);
     position: relative;
-    z-index: 2;                  /* Fica na frente da bola */
+    z-index: 2;
 }
 
 .title-wrapper { position: relative; z-index: 3; }
@@ -198,7 +187,7 @@ nav a:hover::after { width: 100%; } /* Faz a linha crescer até 100% no hover */
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 4px;
-    text-shadow: 2px 4px 15px rgba(0,0,0,0.9); /* Sombra pesada pra dar leitura */
+    text-shadow: 2px 4px 15px rgba(0,0,0,0.9);
 }
 
 .hero-content p {
@@ -206,12 +195,11 @@ nav a:hover::after { width: 100%; } /* Faz a linha crescer até 100% no hover */
     color: #eee;
     margin-bottom: 2.5rem;
     max-width: 650px;
-    margin-inline: auto;         /* Centraliza o texto */
+    margin-inline: auto;
     font-weight: 300;
     line-height: 1.6;
 }
 
-/* Botão Explorar */
 .btn-primary {
     background: linear-gradient(135deg, var(--gold), #b5952f);
     color: #000;
@@ -228,18 +216,17 @@ nav a:hover::after { width: 100%; } /* Faz a linha crescer até 100% no hover */
 
 .btn-primary:hover {
     background: linear-gradient(135deg, var(--gold-hover), var(--gold));
-    transform: translateY(-4px) scale(1.02); /* Cresce e pula no hover */
+    transform: translateY(-4px) scale(1.02);
     box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
 }
 
 /* ================== PRODUTOS (Vitrine) ================== */
 main {
     padding: 6rem 5%;
-    max-width: 1400px;           /* Limita largura máxima em monitores gigantes */
+    max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Título "Coleção Exclusiva" com linhas laterais */
 .section-title {
     text-align: center;
     font-size: 2.5rem;
@@ -259,38 +246,27 @@ main {
     display: block;
 }
 
-/* Grid Responsivo das camisas */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adapta sozinho pra celular ou PC */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2.5rem;
 }
 
-/* Cartão individual da camisa */
 .product-card {
     background-color: var(--card-bg);
     border-radius: 12px;
-    overflow: hidden;            /* Corta as pontas da foto que sobrarem */
+    overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(255, 255, 255, 0.03);
-    
-    /* Prepara para a animação do JavaScript */
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-.product-card.show {
-    opacity: 1;                  /* JavaScript coloca esta classe para mostrar o card */
-    transform: translateY(0);
+    /* Removido opacity: 0; para as camisas aparecerem na tela! */
 }
 
 .product-card:hover {
-    transform: translateY(-12px); /* Levanta o card */
+    transform: translateY(-12px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.8), 0 0 15px rgba(212, 175, 55, 0.2);
     border-color: rgba(212, 175, 55, 0.3);
 }
 
-/* Área da foto do produto */
 .product-image {
     position: relative;
     height: 320px;
@@ -300,13 +276,12 @@ main {
 .product-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;           /* Faz a foto preencher todo o espaço sem deformar */
+    object-fit: cover;
     transition: transform 0.7s ease;
 }
 
-.product-card:hover .product-image img { transform: scale(1.1); /* Dá um zoom na foto ao passar o mouse */ }
+.product-card:hover .product-image img { transform: scale(1.1); }
 
-/* Etiqueta na foto (Ex: NOVO, PREMIUM) */
 .tag {
     position: absolute;
     top: 15px;
@@ -323,12 +298,10 @@ main {
 
 .tag-gold { background: linear-gradient(135deg, var(--gold), #b5952f); }
 
-/* Informações do produto */
 .product-info { padding: 1.8rem; text-align: center; }
 .product-info h3 { font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 500; color: #fff; }
 .price { color: var(--gold); font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
 
-/* Botão de adicionar ao carrinho */
 .add-to-cart {
     width: 100%;
     padding: 1rem;
@@ -368,13 +341,13 @@ main {
     text-align: center;
     font-size: 32px;
     box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
-    z-index: 1000;               /* Fica sempre por cima de tudo */
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     transition: all 0.3s ease;
-    animation: pulse-green 2s infinite; /* Efeito de batida de coração verde */
+    animation: pulse-green 2s infinite;
 }
 
 @keyframes pulse-green {
@@ -384,10 +357,10 @@ main {
 }
 
 .whatsapp-float:hover {
-    transform: scale(1.1) rotate(-10deg); /* Balança ao passar o mouse */
+    transform: scale(1.1) rotate(-10deg);
     color: #FFF;
     background-color: #20b858;
-    animation: none;             /* Para o pulso ao passar o mouse */
+    animation: none;
 }
 
 /* ================== RODAPÉ ================== */
@@ -399,4 +372,95 @@ footer {
     color: var(--text-muted);
     font-size: 0.9rem;
     margin-top: 4rem;
+}
+
+/* ================== MODAL DO CARRINHO ================== */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid var(--gold); /* Corrigido para a variável correta */
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    color: white;
+}
+
+.fechar-modal {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.item-carrinho span {
+    font-size: 0.9rem;
+    max-width: 70%;
+}
+
+.btn-remover {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-remover:hover {
+    background: #c0392b;
+}
+
+.btn-finalizar {
+    width: 100%;
+    background: var(--gold); /* Corrigido para a variável correta */
+    color: black;
+    border: none;
+    padding: 14px;
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.2s;
+}
+
+.btn-finalizar:hover {
+    transform: scale(1.02);
+}
+
+.btn-limpar {
+    width: 100%;
+    background: transparent;
+    color: #888;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: underline;
+}
+
+.btn-limpar:hover {
+    color: #fff;
 }
