@@ -397,7 +397,3 @@ footer p {
     color: var(--cor-destaque);      /* Deixa o seu nome em destaque dourado */
     opacity: 0.8;
 }
-
-.btn-limpar:hover {
-    color: #fff;
-}
