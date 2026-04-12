@@ -1,0 +1,402 @@
+/* ================== VARIÁVEIS GERAIS ================== */
+/* A raiz do documento: Salva cores em variáveis para facilitar a mudança depois */
+:root {
+    --bg-dark: #050505;          /* Fundo quase preto do site */
+    --card-bg: #111111;          /* Fundo um pouco mais claro para os cartões */
+    --gold: #D4AF37;             /* Dourado premium principal */
+    --gold-hover: #F3E5AB;       /* Dourado claro para quando o mouse passar por cima */
+    --gold-glow: rgba(212, 175, 55, 0.4); /* Efeito de brilho/sombra dourada */
+    --text-light: #f5f5f5;       /* Cor do texto principal (branco gelo) */
+    --text-muted: #888888;       /* Cor secundária (cinza) para rodapé */
+    --whatsapp-green: #25d366;   /* Cor oficial do WhatsApp */
+}
+
+/* O seletor '*' reseta os padrões do navegador para todos os elementos */
+* {
+    margin: 0;                   /* Tira margens externas padrão */
+    padding: 0;                  /* Tira margens internas padrão */
+    box-sizing: border-box;      /* Impede que bordas aumentem o tamanho total do elemento */
+}
+
+/* Configuração do fundo da página inteira */
+body {
+    font-family: 'Montserrat', sans-serif; /* Aplica a fonte elegante */
+    background: radial-gradient(circle at top center, #1a1a1a 0%, var(--bg-dark) 100%); /* Fundo com luz central */
+    color: var(--text-light);    /* Define a cor de todo o texto */
+    scroll-behavior: smooth;     /* Faz a página rolar suavemente ao clicar no menu */
+    overflow-x: hidden;          /* Impede barra de rolagem horizontal (evita quebrar o layout) */
+}
+
+/* ================== CABEÇALHO (MENU) ================== */
+header {
+    display: flex;               /* Alinha logo, menu e carrinho lado a lado */
+    justify-content: space-between; /* Joga os elementos para as bordas */
+    align-items: center;         /* Centraliza verticalmente */
+    padding: 1.5rem 5%;          /* Dá respiro (espaçamento) interno */
+    background-color: rgba(5, 5, 5, 0.75); /* Fundo preto levemente transparente */
+    backdrop-filter: blur(12px); /* Cria o efeito de "vidro embaçado" */
+    position: sticky;            /* Faz o menu grudar no topo da tela ao rolar */
+    top: 0;                      /* Fixa exatamente no pixel zero do topo */
+    z-index: 100;                /* Garante que o menu fique por cima de todas as imagens */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Linha sutil separando o menu do site */
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 3px;         /* Afasta as letras da palavra ELITE */
+}
+
+.logo span {
+    color: var(--gold);          /* Pinta a palavra JERSEYS de dourado */
+    text-shadow: 0 0 10px var(--gold-glow); /* Coloca um brilho na logo */
+}
+
+nav ul {
+    display: flex;               /* Coloca os links do menu lado a lado */
+    list-style: none;            /* Tira as "bolinhas" padrão de listas */
+    gap: 2.5rem;                 /* Espaço entre um link e outro */
+}
+
+nav a {
+    color: var(--text-light);
+    text-decoration: none;       /* Tira o sublinhado dos links */
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;   /* Deixa tudo em CAIXA ALTA */
+    position: relative;          /* Necessário para a animação da linha amarela abaixo */
+    transition: color 0.3s;
+}
+
+/* Cria a linha que aparece embaixo do link ao passar o mouse */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;                    /* Começa com largura zero (invisível) */
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--gold);
+    transition: width 0.3s ease; /* Anima a largura crescendo */
+}
+
+nav a:hover { color: var(--gold); } /* Pinta o texto de dourado no hover */
+nav a:hover::after { width: 100%; } /* Faz a linha crescer até 100% no hover */
+
+/* ================== CARRINHO DE COMPRAS ================== */
+.cart-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;             /* Mouse vira "mãozinha" */
+    padding: 10px 20px;
+    border-radius: 30px;         /* Arredonda as pontas parecendo um botão */
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d); /* Cor metálica escura */
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: all 0.3s ease;
+}
+
+.cart-container:hover {
+    border-color: var(--gold);   /* Acende a borda dourada */
+    box-shadow: 0 0 20px var(--gold-glow); /* Acende o brilho externo */
+    transform: translateY(-2px); /* Pula um pouquinho pra cima */
+}
+
+.cart-container span.checkout-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.cart-icon { position: relative; font-size: 1.2rem; }
+
+/* Bolinha com o número de itens na sacola */
+.cart-count {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    background-color: var(--gold);
+    color: #000;                 /* Número preto pra dar contraste */
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 50%;          /* Círculo perfeito */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação de pulo elástico */
+}
+
+/* ================== BANNER (HERO) E BOLA ANIMADA ================== */
+.hero {
+    height: 85vh;                /* Ocupa 85% da altura da tela */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(5,5,5,0.7) 50%, var(--bg-dark) 100%), 
+                url('https://images.unsplash.com/photo-1606214174341-38379f64a78c?q=80&w=1920&auto=format&fit=crop') center/cover fixed; /* Imagem fixa no fundo (Parallax) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;            /* Esconde a bola quando ela sai da tela */
+}
+
+/* Caixa que controla o movimento da bola da esquerda pra direita */
+.ball-container {
+    position: absolute;
+    bottom: 20%;                 /* Altura no chão */
+    left: -200px;                /* Começa fora da tela na esquerda */
+    z-index: 1;                  /* Fica atrás dos textos do banner */
+    animation: moveAcross 12s linear infinite; /* Animação de cruzar a tela */
+}
+
+/* Caixa que controla o "quicar" da bola */
+.bounce-wrapper {
+    animation: bounceBall 0.5s infinite alternate ease-in; 
+}
+
+/* A bola em si */
+.rolling-ball {
+    width: 150px; 
+    height: 150px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg') center/cover no-repeat; /* Textura real */
+    border-radius: 50%;
+    filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(0.8) drop-shadow(0 0 25px rgba(212, 175, 55, 0.7)); /* Deixa dourada e brilhante */
+    opacity: 0.9;
+    animation: spinBall 12s linear infinite; /* Faz ela girar */
+}
+
+/* Sombra da bola no chão */
+.ball-shadow {
+    width: 100px;
+    height: 15px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 50%;
+    margin: 10px auto 0 auto;
+    filter: blur(5px);           /* Desfoca pra parecer sombra */
+    animation: shadowPulse 0.5s infinite alternate ease-in; /* Sombra aumenta e diminui */
+}
+
+/* Animações (Keyframes) da Física da Bola */
+@keyframes moveAcross { 0% { left: -250px; } 100% { left: 110vw; } }
+@keyframes spinBall { 0% { transform: rotate(0deg); } 100% { transform: rotate(1080deg); } }
+@keyframes bounceBall { 0% { transform: translateY(-40px); animation-timing-function: ease-in; } 100% { transform: translateY(0); animation-timing-function: ease-out; } }
+@keyframes shadowPulse { 0% { transform: scale(0.6); opacity: 0.3; } 100% { transform: scale(1); opacity: 0.8; } }
+
+/* Textos do Banner */
+.hero-content {
+    animation: fadeInUp 1s ease-out forwards; /* Texto sobe suavemente ao carregar o site */
+    opacity: 0;
+    transform: translateY(30px);
+    position: relative;
+    z-index: 2;                  /* Fica na frente da bola */
+}
+
+.title-wrapper { position: relative; z-index: 3; }
+
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 4px 15px rgba(0,0,0,0.9); /* Sombra pesada pra dar leitura */
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #eee;
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+    margin-inline: auto;         /* Centraliza o texto */
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Botão Explorar */
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold), #b5952f);
+    color: #000;
+    padding: 1.2rem 3rem;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    display: inline-block;
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--gold-hover), var(--gold));
+    transform: translateY(-4px) scale(1.02); /* Cresce e pula no hover */
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
+}
+
+/* ================== PRODUTOS (Vitrine) ================== */
+main {
+    padding: 6rem 5%;
+    max-width: 1400px;           /* Limita largura máxima em monitores gigantes */
+    margin: 0 auto;
+}
+
+/* Título "Coleção Exclusiva" com linhas laterais */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.section-title::before, .section-title::after {
+    content: '';
+    height: 1px;
+    width: 50px;
+    background-color: var(--gold);
+    display: block;
+}
+
+/* Grid Responsivo das camisas */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Adapta sozinho pra celular ou PC */
+    gap: 2.5rem;
+}
+
+/* Cartão individual da camisa */
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;            /* Corta as pontas da foto que sobrarem */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    
+    /* Prepara para a animação do JavaScript */
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.product-card.show {
+    opacity: 1;                  /* JavaScript coloca esta classe para mostrar o card */
+    transform: translateY(0);
+}
+
+.product-card:hover {
+    transform: translateY(-12px); /* Levanta o card */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.8), 0 0 15px rgba(212, 175, 55, 0.2);
+    border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Área da foto do produto */
+.product-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* Faz a foto preencher todo o espaço sem deformar */
+    transition: transform 0.7s ease;
+}
+
+.product-card:hover .product-image img { transform: scale(1.1); /* Dá um zoom na foto ao passar o mouse */ }
+
+/* Etiqueta na foto (Ex: NOVO, PREMIUM) */
+.tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(255,255,255,0.9);
+    color: #000;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.tag-gold { background: linear-gradient(135deg, var(--gold), #b5952f); }
+
+/* Informações do produto */
+.product-info { padding: 1.8rem; text-align: center; }
+.product-info h3 { font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 500; color: #fff; }
+.price { color: var(--gold); font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+
+/* Botão de adicionar ao carrinho */
+.add-to-cart {
+    width: 100%;
+    padding: 1rem;
+    background-color: transparent;
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.add-to-cart:hover {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* ================== WHATSAPP FLUTUANTE ================== */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--whatsapp-green);
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 32px;
+    box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 1000;               /* Fica sempre por cima de tudo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    animation: pulse-green 2s infinite; /* Efeito de batida de coração verde */
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) rotate(-10deg); /* Balança ao passar o mouse */
+    color: #FFF;
+    background-color: #20b858;
+    animation: none;             /* Para o pulso ao passar o mouse */
+}
+
+/* ================== RODAPÉ ================== */
+footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    background-color: rgba(0,0,0,0.5);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 4rem;
+}
