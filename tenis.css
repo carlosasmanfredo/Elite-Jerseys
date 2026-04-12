@@ -1,0 +1,360 @@
+/* =========================================
+   1. VARIÁVEIS (Padronizadas com a Elite Jerseys)
+========================================= */
+:root {
+    --cor-primaria: #000000;
+    --cor-destaque: #D4AF37; /* Mesmo dourado premium da página principal */
+    --cor-fundo: #111111;
+    --cor-texto: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; /* Mesma fonte da loja */
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. MENU SUPERIOR 
+========================================= */
+.menu-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-voltar {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.logo-voltar:hover {
+    color: var(--cor-destaque);
+}
+
+.carrinho-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.contador {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================
+   3. ANIMAÇÃO DA BOLA ROLANDO AO FUNDO
+========================================= */
+.ball-container-tenis {
+    position: fixed;
+    bottom: 15%;
+    left: -200px;
+    z-index: -2;
+    animation: moveAcross 15s linear infinite;
+}
+
+.bounce-wrapper {
+    animation: bounceBall 0.5s infinite alternate ease-in; 
+}
+
+/* No arquivo tenis.css */
+
+.rolling-ball {
+    width: 250px; 
+    height: 250px;
+    background: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg') center/cover no-repeat;
+    border-radius: 50%;
+    
+    /* FILTRO ATUALIZADO: Aumentamos o brightness para 1.2 (antes era 0.8) 
+       isso deixa o dourado muito mais "aceso" e nítido. */
+    filter: sepia(1) saturate(5) hue-rotate(5deg) brightness(1.2) drop-shadow(0 0 25px rgba(212, 175, 55, 0.7));
+    
+    /* OPACIDADE ATUALIZADA: Aumentamos para 0.7 (antes era 0.25)
+       Agora ela ficará bem mais aparente ao fundo. */
+    opacity: 0.7; 
+    
+    animation: spinBall 15s linear infinite;
+}
+
+.ball-shadow {
+    width: 150px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 50%;
+    margin: 15px auto 0 auto;
+    filter: blur(8px);
+    opacity: 0.4;
+    animation: shadowPulse 0.5s infinite alternate ease-in;
+}
+
+@keyframes moveAcross { 0% { left: -300px; } 100% { left: 110vw; } }
+@keyframes spinBall { 0% { transform: rotate(0deg); } 100% { transform: rotate(1080deg); } }
+@keyframes bounceBall { 0% { transform: translateY(-50px); animation-timing-function: ease-in; } 100% { transform: translateY(0); animation-timing-function: ease-out; } }
+@keyframes shadowPulse { 0% { transform: scale(0.7); opacity: 0.2; } 100% { transform: scale(1); opacity: 0.4; } }
+
+.camada-fundo {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, var(--cor-fundo) 80%);
+    z-index: -1;
+}
+
+/* =========================================
+   4. LAYOUT DA COLEÇÃO 
+========================================= */
+.container-exclusivo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.cabecalho-secao {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cabecalho-secao h2 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.cabecalho-secao p {
+    color: #ccc;
+    letter-spacing: 2px;
+    margin-top: 5px;
+}
+
+.linha-detalhe {
+    width: 60px;
+    height: 4px;
+    background-color: var(--cor-destaque);
+    margin: 15px auto;
+}
+
+/* =========================================
+   5. GRADE E CARDS DE PRODUTOS
+========================================= */
+.grade-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.card-produto {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: 0.4s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-produto:hover {
+    transform: translateY(-10px);
+    border-color: var(--cor-destaque);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.moldura-foto {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: rgba(255, 255, 255, 0.01);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.moldura-foto img {
+    width: 90%; 
+    height: 90%;
+    object-fit: contain;
+    transition: 0.5s;
+}
+
+.card-produto:hover img {
+    transform: scale(1.1);
+}
+
+.card-produto h3 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    flex-grow: 1;
+}
+
+.preco {
+    font-size: 1.4rem;
+    color: var(--cor-destaque);
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.btn-comprar {
+    width: 100%;
+    background: transparent;
+    color: var(--cor-destaque);
+    border: 1px solid var(--cor-destaque);
+    padding: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-comprar:hover {
+    background: var(--cor-destaque);
+    color: var(--cor-primaria);
+}
+
+/* =========================================
+   6. BOTÃO WHATSAPP E MODAL 
+========================================= */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    font-size: 32px;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid var(--cor-destaque);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    color: white;
+}
+
+.fechar-modal {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.item-carrinho span {
+    font-size: 0.9rem;
+    max-width: 70%;
+}
+
+.btn-remover {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-remover:hover {
+    background: #c0392b;
+}
+
+.btn-finalizar {
+    width: 100%;
+    background: var(--cor-destaque);
+    color: black;
+    border: none;
+    padding: 14px;
+    margin-top: 25px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.2s;
+}
+
+.btn-finalizar:hover {
+    transform: scale(1.02);
+}
+
+.btn-limpar {
+    width: 100%;
+    background: transparent;
+    color: #888;
+    border: none;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: underline;
+}
+
+.btn-limpar:hover {
+    color: #fff;
+}
