@@ -355,6 +355,49 @@ body {
     text-decoration: underline;
 }
 
+/* =========================================
+   RODAPÉ (FOOTER)
+========================================= */
+footer {
+    text-align: center;              /* Centraliza todo o conteúdo */
+    padding: 4rem 2rem;              /* Dá um espaçamento generoso em cima e embaixo */
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo preto transparente */
+    backdrop-filter: blur(10px);     /* Efeito de vidro igual ao menu */
+    border-top: 1px solid rgba(212, 175, 55, 0.2); /* Linha dourada sutil no topo */
+    margin-top: 80px;                /* Afasta o rodapé da vitrine de tênis */
+    width: 100%;                     /* Garante que ocupe a largura toda */
+    position: relative;              /* Garante que fique abaixo da bola animada */
+    z-index: 10;
+}
+
+.logo-footer {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.logo-footer span {
+    color: var(--cor-destaque);      /* Usa o seu dourado #D4AF37 */
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+footer p {
+    color: #888;                     /* Texto em cinza para não brigar com a logo */
+    font-size: 0.85rem;
+    margin: 5px 0;
+    font-weight: 300;
+}
+
+.dev-credito {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    color: var(--cor-destaque);      /* Deixa o seu nome em destaque dourado */
+    opacity: 0.8;
+}
+
 .btn-limpar:hover {
     color: #fff;
 }
