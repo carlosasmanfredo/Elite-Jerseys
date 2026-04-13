@@ -12,20 +12,18 @@
 
     <nav class="menu-superior">
         <a href="index.html" class="logo-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar para Loja</a>
-        <div class="carrinho-container">
+        <div class="carrinho-container" id="abrir-carrinho">
             <i class="fa-solid fa-bag-shopping" style="font-size: 1.5rem; color: var(--cor-destaque);"></i>
             <span id="contador-sacola" class="contador">0</span>
         </div>
     </nav>
 
+    <div class="camada-fundo"></div>
     <div class="ball-container-tenis">
         <div class="bounce-wrapper">
             <div class="rolling-ball"></div>
         </div>
-        <div class="ball-shadow"></div>
     </div>
-
-    <div class="camada-fundo"></div>
 
     <div class="container-exclusivo">
         <header class="cabecalho-secao">
@@ -35,21 +33,99 @@
         </header>
         
         <main class="grade-produtos">
+            
             <div class="card-produto">
                 <div class="moldura-foto">
-                    <img src="https://via.placeholder.com/400x500/111/fff?text=Tenis+Nike" alt="Tênis Nike">
+                    <img src="bola_1.jpg" alt="Tênis Nike">
+                    <span class="tag-premium">Elite Sneakers</span>
                 </div>
-                <h3>Nike Shox Elite Gold</h3>
-                <p class="preco">R$ 599,90</p>
-                <button class="btn-comprar"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                <div class="info-produto">
+                    <h3>Nike Shox Elite Gold</h3>
+                    <p class="preco">R$ 599,90</p>
+                    <button class="btn-comprar"><i class="fa-solid fa-plus"></i> Adicionar à Sacola</button>
+                </div>
             </div>
-            </main>
+
+            <div class="card-produto">
+                <div class="moldura-foto">
+                    <img src="bola_1.jpg" alt="Tênis Nike">
+                    <span class="tag-premium">Elite Sneakers</span>
+                </div>
+                <div class="info-produto">
+                    <h3>Nike Air Max Premium</h3>
+                    <p class="preco">R$ 549,90</p>
+                    <button class="btn-comprar"><i class="fa-solid fa-plus"></i> Adicionar à Sacola</button>
+                </div>
+            </div>
+
+            <div class="card-produto">
+                <div class="moldura-foto">
+                    <img src="bola_1.jpg" alt="Tênis Nike">
+                    <span class="tag-premium">Elite Sneakers</span>
+                </div>
+                <div class="info-produto">
+                    <h3>Adidas Ultraboost Black Gold</h3>
+                    <p class="preco">R$ 629,90</p>
+                    <button class="btn-comprar"><i class="fa-solid fa-plus"></i> Adicionar à Sacola</button>
+                </div>
+            </div>
+
+            <div class="card-produto">
+                <div class="moldura-foto">
+                    <img src="bola_1.jpg" alt="Tênis Nike">
+                    <span class="tag-premium">Elite Sneakers</span>
+                </div>
+                <div class="info-produto">
+                    <h3>Puma Suede Limited Edition</h3>
+                    <p class="preco">R$ 479,90</p>
+                    <button class="btn-comprar"><i class="fa-solid fa-plus"></i> Adicionar à Sacola</button>
+                </div>
+            </div>
+
+            <div class="card-produto">
+                <div class="moldura-foto">
+                    <img src="bola_1.jpg" alt="Tênis Nike">
+                    <span class="tag-premium">Elite Sneakers</span>
+                </div>
+                <div class="info-produto">
+                    <h3>Nike Jordan Street Luxe</h3>
+                    <p class="preco">R$ 699,90</p>
+                    <button class="btn-comprar"><i class="fa-solid fa-plus"></i> Adicionar à Sacola</button>
+                </div>
+            </div>
+
+            <div class="card-produto">
+                <div class="moldura-foto">
+                    <img src="bola_1.jpg" alt="Tênis Nike">
+                    <span class="tag-premium">Elite Sneakers</span>
+                </div>
+                <div class="info-produto">
+                    <h3>Mizuno Wave Creation Pro</h3>
+                    <p class="preco">R$ 589,90</p>
+                    <button class="btn-comprar"><i class="fa-solid fa-plus"></i> Adicionar à Sacola</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="modal-carrinho" class="modal">
+        <div class="modal-content">
+            <span class="fechar-modal">&times;</span>
+            <h3>Sua Sacola</h3>
+            <div id="lista-itens-carrinho"></div>
+
+            <div class="total-carrinho">
+                <button id="btn-finalizar-whatsapp" class="btn-finalizar">Finalizar Pedido via WhatsApp</button>
+                <button id="btn-limpar-carrinho" class="btn-limpar">Esvaziar Sacola</button>
+            </div>
+        </div>
     </div>
 
     <footer>
         <div class="logo">ELITE <span>JERSEYS</span></div>
         <p>&copy; 2026 Elite Jerseys. Vestindo apaixonados com excelência.</p>
-        <p>DESENVOLVIDO POR - CSM (CARLOSMANFREDO)</p>
+        <p class="developer">DESENVOLVIDO POR <span class="highlight-name">CSM - (CARLOSMANFREDO)</span></p>
     </footer>
 
     <a href="https://wa.me/5516999999999" class="whatsapp-float" target="_blank">
