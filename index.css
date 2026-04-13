@@ -1,13 +1,14 @@
 /* ================== VARIÁVEIS GERAIS ================== */
 :root {
-    --bg-dark: #050505;          /* Fundo quase preto do site */
-    --card-bg: #111111;          /* Fundo um pouco mais claro para os cartões */
-    --gold: #D4AF37;             /* Dourado premium principal */
-    --gold-hover: #F3E5AB;       /* Dourado claro para quando o mouse passar por cima */
-    --gold-glow: rgba(212, 175, 55, 0.4); /* Efeito de brilho/sombra dourada */
-    --text-light: #f5f5f5;       /* Cor do texto principal (branco gelo) */
-    --text-muted: #888888;       /* Cor secundária (cinza) para rodapé */
-    --whatsapp-green: #25d366;   /* Cor oficial do WhatsApp */
+    --bg-dark: #050505;
+    --card-bg: #111111;
+    --gold: #D4AF37;
+    --gold-hover: #F3E5AB;
+    --gold-glow: rgba(212, 175, 55, 0.4);
+    --text-light: #f5f5f5;
+    --text-muted: #888888;
+    --whatsapp-green: #25d366;
+    --field-green: #0a1f0a;
 }
 
 * {
@@ -76,8 +77,13 @@ nav a::after {
     transition: width 0.3s ease;
 }
 
-nav a:hover { color: var(--gold); }
-nav a:hover::after { width: 100%; }
+nav a:hover {
+    color: var(--gold);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
 
 /* ================== CARRINHO DE COMPRAS ================== */
 .cart-container {
@@ -105,7 +111,10 @@ nav a:hover::after { width: 100%; }
     color: var(--gold);
 }
 
-.cart-icon { position: relative; font-size: 1.2rem; }
+.cart-icon {
+    position: relative;
+    font-size: 1.2rem;
+}
 
 .cart-count {
     position: absolute;
@@ -117,14 +126,12 @@ nav a:hover::after { width: 100%; }
     font-weight: 700;
     padding: 3px 7px;
     border-radius: 50%;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* ================== BANNER (HERO) E BOLA ANIMADA ================== */
+/* ================== BANNER HERO ================== */
 .hero {
     height: 85vh;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(5,5,5,0.7) 50%, var(--bg-dark) 100%), 
-                url('https://images.unsplash.com/photo-1606214174341-38379f64a78c?q=80&w=1920&auto=format&fit=crop') center/cover fixed;
+    background: radial-gradient(circle at center, #112a11 0%, var(--bg-dark) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,20 +140,48 @@ nav a:hover::after { width: 100%; }
     overflow: hidden;
 }
 
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(to right, transparent 49.8%, rgba(255,255,255,0.08) 49.8%, rgba(255,255,255,0.08) 50.2%, transparent 50.2%),
+        radial-gradient(circle at center, transparent 14.8%, rgba(255,255,255,0.08) 15%, rgba(255,255,255,0.08) 16%, transparent 16.2%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ================== BOLA ANIMADA ================== */
 .ball-container {
     position: absolute;
-    bottom: 20%;
+    bottom: 15%;
     left: -200px;
-    z-index: 1;
+    z-index: 2;
     animation: moveAcross 12s linear infinite;
 }
 
 .bounce-wrapper {
-    animation: bounceBall 0.5s infinite alternate ease-in; 
+    animation: bounceBall 0.5s infinite alternate ease-in;
 }
 
 .rolling-ball {
-    width: 150px; 
+    width: 150px;
     height: 150px;
     background: url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg') center/cover no-repeat;
     border-radius: 50%;
@@ -158,35 +193,48 @@ nav a:hover::after { width: 100%; }
 .ball-shadow {
     width: 100px;
     height: 15px;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     margin: 10px auto 0 auto;
     filter: blur(5px);
     animation: shadowPulse 0.5s infinite alternate ease-in;
 }
 
-@keyframes moveAcross { 0% { left: -250px; } 100% { left: 110vw; } }
-@keyframes spinBall { 0% { transform: rotate(0deg); } 100% { transform: rotate(1080deg); } }
-@keyframes bounceBall { 0% { transform: translateY(-40px); animation-timing-function: ease-in; } 100% { transform: translateY(0); animation-timing-function: ease-out; } }
-@keyframes shadowPulse { 0% { transform: scale(0.6); opacity: 0.3; } 100% { transform: scale(1); opacity: 0.8; } }
+@keyframes moveAcross {
+    0% { left: -250px; }
+    100% { left: 110vw; }
+}
 
+@keyframes spinBall {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(1080deg); }
+}
+
+@keyframes bounceBall {
+    0% { transform: translateY(-40px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes shadowPulse {
+    0% { transform: scale(0.6); opacity: 0.2; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+/* ================== CONTEÚDO DO HERO ================== */
 .hero-content {
     animation: fadeInUp 1s ease-out forwards;
     opacity: 0;
     transform: translateY(30px);
     position: relative;
-    z-index: 2;
+    z-index: 3;
 }
-
-.title-wrapper { position: relative; z-index: 3; }
-
-@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
 .hero-content h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
     letter-spacing: 4px;
+    color: var(--gold);
     text-shadow: 2px 4px 15px rgba(0,0,0,0.9);
 }
 
@@ -217,10 +265,16 @@ nav a:hover::after { width: 100%; }
 .btn-primary:hover {
     background: linear-gradient(135deg, var(--gold-hover), var(--gold));
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.5);
 }
 
-/* ================== PRODUTOS (Vitrine) ================== */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================== PRODUTOS ================== */
 main {
     padding: 6rem 5%;
     max-width: 1400px;
@@ -238,12 +292,12 @@ main {
     gap: 15px;
 }
 
-.section-title::before, .section-title::after {
+.section-title::before,
+.section-title::after {
     content: '';
     height: 1px;
     width: 50px;
     background-color: var(--gold);
-    display: block;
 }
 
 .products-grid {
@@ -258,7 +312,9 @@ main {
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(255, 255, 255, 0.03);
-    /* Removido opacity: 0; para as camisas aparecerem na tela! */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .product-card:hover {
@@ -280,7 +336,9 @@ main {
     transition: transform 0.7s ease;
 }
 
-.product-card:hover .product-image img { transform: scale(1.1); }
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
 
 .tag {
     position: absolute;
@@ -296,11 +354,33 @@ main {
     z-index: 2;
 }
 
-.tag-gold { background: linear-gradient(135deg, var(--gold), #b5952f); }
+.tag-gold {
+    background: var(--gold);
+}
 
-.product-info { padding: 1.8rem; text-align: center; }
-.product-info h3 { font-size: 1.1rem; margin-bottom: 0.8rem; font-weight: 500; color: #fff; }
-.price { color: var(--gold); font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.2); }
+.product-info {
+    padding: 1.8rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.product-info h3 {
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.price {
+    color: var(--gold);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
 
 .add-to-cart {
     width: 100%;
@@ -309,26 +389,26 @@ main {
     color: var(--text-light);
     border: 1px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.8rem;
     border-radius: 4px;
     transition: all 0.3s ease;
+    margin-top: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
+    min-height: 52px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .add-to-cart:hover {
     background-color: var(--gold);
-    border-color: var(--gold);
     color: #000;
-    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    border-color: var(--gold);
 }
 
-/* ================== WHATSAPP FLUTUANTE ================== */
+/* ================== WHATSAPP ================== */
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -340,13 +420,11 @@ main {
     border-radius: 50px;
     text-align: center;
     font-size: 32px;
-    box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4);
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 0.3s ease;
     animation: pulse-green 2s infinite;
 }
 
@@ -356,11 +434,163 @@ main {
     100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1) rotate(-10deg);
-    color: #FFF;
-    background-color: #20b858;
-    animation: none;
+/* ================== MODAL DO CARRINHO ================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+}
+
+.modal-content {
+    background-color: #141414;
+    margin: 6% auto;
+    padding: 28px;
+    border: 1px solid var(--gold);
+    width: 90%;
+    max-width: 520px;
+    border-radius: 14px;
+    color: white;
+    box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    position: relative;
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--gold);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--gold);
+    cursor: pointer;
+    transition: 0.3s ease;
+    line-height: 1;
+}
+
+.fechar-modal:hover {
+    color: #fff;
+    transform: scale(1.08);
+}
+
+#lista-itens-carrinho {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: #1c1c1c;
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.nome-item-carrinho {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--text-light);
+}
+
+.btn-remover {
+    background: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-remover:hover {
+    background: #ff4d4d;
+    color: #fff;
+}
+
+.carrinho-vazio {
+    text-align: center;
+    color: #999;
+    padding: 20px 0;
+}
+
+.total-carrinho {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-finalizar,
+.btn-limpar {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-finalizar {
+    background: #25d366;
+    color: #fff;
+    border: none;
+}
+
+.btn-finalizar:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+}
+
+.btn-limpar {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+}
+
+.btn-limpar:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+#lista-itens-carrinho::-webkit-scrollbar {
+    width: 6px;
+}
+
+#lista-itens-carrinho::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.5);
+    border-radius: 10px;
+}
+
+#lista-itens-carrinho::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 /* ================== RODAPÉ ================== */
@@ -370,97 +600,162 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.05);
     background-color: rgba(0,0,0,0.5);
     color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-top: 4rem;
 }
 
-/* ================== MODAL DO CARRINHO ================== */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    backdrop-filter: blur(5px);
+.footer-logo {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
 }
 
-.modal-content {
-    background-color: #1a1a1a;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid var(--gold); /* Corrigido para a variável correta */
-    width: 90%;
-    max-width: 400px;
-    border-radius: 10px;
-    color: white;
+.footer-credit {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
 }
 
-.fechar-modal {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.item-carrinho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #333;
-}
-
-.item-carrinho span {
-    font-size: 0.9rem;
-    max-width: 70%;
-}
-
-.btn-remover {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: bold;
-    transition: background 0.3s;
-}
-
-.btn-remover:hover {
-    background: #c0392b;
-}
-
-.btn-finalizar {
-    width: 100%;
-    background: var(--gold); /* Corrigido para a variável correta */
-    color: black;
-    border: none;
-    padding: 14px;
-    margin-top: 25px;
-    font-weight: bold;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
+.developer-name {
+    color: var(--gold);
+    font-weight: 700;
     text-transform: uppercase;
-    transition: transform 0.2s;
+    letter-spacing: 1px;
+    text-shadow: 0 0 12px var(--gold-glow);
 }
 
-.btn-finalizar:hover {
-    transform: scale(1.02);
+/* ================== RESPONSIVIDADE ================== */
+@media (max-width: 992px) {
+    header {
+        flex-wrap: wrap;
+        gap: 18px;
+        justify-content: center;
+    }
+
+    nav ul {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
 }
 
-.btn-limpar {
-    width: 100%;
-    background: transparent;
-    color: #888;
-    border: none;
-    margin-top: 15px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    text-decoration: underline;
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 4%;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    nav ul {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+    }
+
+    .cart-container {
+        padding: 8px 14px;
+    }
+
+    .cart-container span.checkout-text {
+        font-size: 0.72rem;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 75vh;
+        padding: 80px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .btn-primary {
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .product-image {
+        height: 280px;
+    }
+
+    .modal-content {
+        margin: 12% auto;
+        width: 92%;
+        padding: 22px;
+    }
+
+    .item-carrinho {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-remover {
+        width: 100%;
+    }
 }
 
-.btn-limpar:hover {
-    color: #fff;
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-title::before,
+    .section-title::after {
+        width: 30px;
+    }
+
+    .product-info {
+        padding: 1.2rem;
+    }
+
+    .price {
+        font-size: 1.2rem;
+    }
+
+    .add-to-cart {
+        font-size: 0.82rem;
+        padding: 0.9rem;
+    }
+
+    .whatsapp-float {
+        width: 54px;
+        height: 54px;
+        font-size: 28px;
+        bottom: 20px;
+        right: 20px;
+    }
 }
